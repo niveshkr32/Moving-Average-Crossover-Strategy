@@ -29,8 +29,8 @@ os.makedirs("output", exist_ok=True)
 pd.DataFrame(results).to_csv("output/report.csv", index=False)
 
 # Telegram Alert
-TOKEN = os.getenv("TELEGRAM_TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")
+TOKEN = os.getenv("8652752416:AAHRHdMM5FCaSfKXKtFCnmmcIwLzYwpalpc")
+CHAT_ID = os.getenv("1517706156")
 
 message = "\n".join(results)
 
