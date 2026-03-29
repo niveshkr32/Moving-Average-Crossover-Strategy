@@ -1,0 +1,39 @@
+trigger: none
+
+schedules:
+- cron: "0 9 * * 1-5"   # Runs every weekday at 9 AM
+  displayName: Daily Market Check
+  branches:
+    include:
+    - main
+  always: true
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  STOCK_API_KEY: 'your_api_key_here'
+
+steps:
+
+# Step 1: Install Python
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+  displayName: 'Install Python'
+
+# Step 2: Install dependencies
+- script: |
+    pip install requests pandas ta
+  displayName: 'Install Python Libraries'
+
+# Step 3: Run Stock Analysis Script
+- script: |
+    python stock_analysis.py
+  displayName: 'Run Stock Strategy'
+
+# Step 4: Publish Results
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: 'output'
+    artifactName: 'StockReports'
