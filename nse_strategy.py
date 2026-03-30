@@ -17,7 +17,8 @@ for stock in stocks:
 
     latest = df.iloc[-1]
 
-    if latest["EMA20"] > latest["EMA50"]:
+
+    if latest["EMA20"].item() > latest["EMA50"].item():
         signal = "BUY"
     else:
         signal = "SELL"
