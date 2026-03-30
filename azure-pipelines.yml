@@ -9,7 +9,7 @@ schedules:
   always: true
 
 pool:
-  name: Default
+  name: stock-pool
   #vmImage: 'ubuntu-latest'
 
 steps:
