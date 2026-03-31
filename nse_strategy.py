@@ -74,12 +74,33 @@ pd.DataFrame(results).to_csv("output/report.csv", index=False)
 TOKEN = "8652752416:AAHRHdMM5FCaSfKXKtFCnmmcIwLzYwpalpc"
 CHAT_ID = "1517706156"
 
-message = "\n".join(results)
+#message = "\n".join(results)
 
-if TOKEN:
-    requests.post(
+#if TOKEN:
+#    requests.post(
+#        f"https://api.telegram.org/bot{TOKEN}/sendMessage",
+#        data={"chat_id": CHAT_ID, "text": message}
+#    )
+
+#print(message)
+
+
+
+# Prepare message
+if not results:
+    message = "No signals today"
+else:
+    message = "\n".join(results)
+
+print("MESSAGE:", message)
+
+# Send to Telegram
+if TOKEN and CHAT_ID:
+    response = requests.post(
         f"https://api.telegram.org/bot{TOKEN}/sendMessage",
         data={"chat_id": CHAT_ID, "text": message}
     )
-
-print(message)
+    
+    print("TELEGRAM RESPONSE:", response.text)
+else:
+    print("TOKEN or CHAT_ID missing")
