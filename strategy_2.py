@@ -105,7 +105,7 @@ for stock in stocks:
     smart = latest["SMART_SIGNAL"]
     
     results.append(
-        f"{stock} → TR:{tight} | VOL:{vol} | BO:{brk} | SM:{smart}"
+        f"{stock} -> TR:{tight} | VOL:{vol} | BO:{brk} | SM:{smart}"
     )
 
 
