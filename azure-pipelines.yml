@@ -40,6 +40,10 @@ steps:
     pip install ta
   displayName: Install TA Library
 
+#- script: |
+#    pip install -r requirements.txt
+#  displayName: Install Dependencies
+
 - script: |
     python nse_strategy.py
   displayName: Run NSE Strategy
