@@ -1,0 +1,40 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  DOCKER_IMAGE: 'niveshkr32/nse-strategy:$(Build.BuildId)'
+
+steps:
+# 1️⃣ Checkout code
+- checkout: self
+
+# 2️⃣ Login to Docker Hub (optional if public)
+- task: Docker@2
+  inputs:
+    command: login
+    containerRegistry: 'docker-hub-connection'
+
+# 3️⃣ Build Docker image
+- task: Docker@2
+  inputs:
+    command: build
+    Dockerfile: Dockerfile
+    tags: $(DOCKER_IMAGE)
+
+# 4️⃣ Push Docker image
+- task: Docker@2
+  inputs:
+    command: push
+    tags: $(DOCKER_IMAGE)
+
+# 5️⃣ (Optional) Kubernetes deploy
+#- task: Kubernetes@1
+#  inputs:
+#    connectionType: 'Kubernetes Service Connection'
+#    kubernetesServiceEndpoint: '<your-k8s-connection>'
+#    command: apply
+#    useConfigurationFile: true
+#    configuration: 'k8s-cronjob.yaml'
