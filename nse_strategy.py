@@ -2,7 +2,7 @@
 
 import yfinance as yf
 import pandas as pd
-import ta
+# import ta
 import requests
 import os
 
@@ -18,7 +18,15 @@ for stock in stocks:
     df["EMA50"] = df["Close"].ewm(span=50).mean()
 
     # RSI
-    df["RSI"] = ta.momentum.RSIIndicator(df["Close"], window=14).rsi()
+    #df["RSI"] = ta.momentum.RSIIndicator(df["Close"], window=14).rsi()
+
+    delta = df["Close"].diff()
+    
+    gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+    
+    rs = gain / loss
+    df["RSI"] = 100 - (100 / (1 + rs))
     
     # Volume average
     df["VOL_AVG"] = df["Volume"].rolling(20).mean()
