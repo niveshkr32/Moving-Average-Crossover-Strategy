@@ -46,7 +46,7 @@ vol_avg = float(df["Volume"].rolling(20).mean().iloc[-1])
 #vol = latest["Volume"]
 #vol_avg = latest["VOL_AVG"]
 
-signal = "NO SIGNAL"
+#signal = "NO SIGNAL"
 
 if ema20 > ema50 and rsi > 55 and vol > vol_avg:
     print("BUY SIGNAL")
