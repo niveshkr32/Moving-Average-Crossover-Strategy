@@ -28,14 +28,14 @@ df = df.iloc[3:, [0, 1, 2, 3, 4, 17, 18, 19]]  # 19 because T is the 20th column
 df.columns = ["Stock Name", "Stock Symbol", "Buy Date", "Buy Qty", "Buy Price", "Sell Date", "Sell Qty", "Sell Price"]
 
 # Clean and convert datatypes
-#df["Buy Date"] = pd.to_datetime(df["Buy Date"])
+# df["Buy Date"] = pd.to_datetime(df["Buy Date"])
 df["Buy Date"] = pd.to_datetime(df["Buy Date"], errors="coerce")
 df["Buy Qty"] = pd.to_numeric(df["Buy Qty"])
 df["Buy Price"]  = pd.to_numeric(df["Buy Price"].astype(str).str.replace(',', ''))
 df["Sell Date"] = pd.to_datetime(df["Sell Date"]).fillna('')
-df["Sell Date"] = df["Sell Date"].dt.strftime('%Y-%m-%d').fillna('')
-df["Buy Date"] = pd.to_datetime(df["Buy Date"], errors="coerce")
-#df["Sell Qty"] = pd.to_numeric(df["Sell Qty"]).fillna('')               # .dt.strftime('%Y-%m-%d') → converts valid dates to a readable string (e.g. 2025-11-09), but NaT turns into NaN. &
+# df["Sell Date"] = df["Sell Date"].dt.strftime('%Y-%m-%d').fillna('')
+df["Sell Date"] = pd.to_datetime(df["Sell Date"], errors="coerce")
+df["Sell Qty"] = pd.to_numeric(df["Sell Qty"]).fillna('')               # .dt.strftime('%Y-%m-%d') → converts valid dates to a readable string (e.g. 2025-11-09), but NaT turns into NaN. &
                                                                         # and .fillna('') → replaces those NaN (which came from NaT) with empty strings.              
 df["Sell Price"] = pd.to_numeric(df["Sell Price"].astype(str).str.replace(',', ''), errors="coerce").fillna('')
 
