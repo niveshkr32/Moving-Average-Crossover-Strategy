@@ -32,19 +32,15 @@ for stock in stocks:
     df["VOL_AVG"] = df["Volume"].rolling(20).mean()
     
     latest = df.iloc[-1]    # Latest row
-
+    
     ema20 = float(latest["EMA20"])
     ema50 = float(latest["EMA50"])
     rsi = float(latest["RSI"])
-    
-    vol = float(latest["Volume"])
-    vol_avg = float(df["Volume"].rolling(20).mean().iloc[-1])
-    
-    #ema20 = float(latest["EMA20"])
-    #ema50 = float(latest["EMA50"])
-    #rsi = float(latest["RSI"])
-    #vol = latest["Volume"]
-    #vol_avg = latest["VOL_AVG"]
+    vol = latest["Volume"]
+    vol_avg = latest["VOL_AVG"]
+
+    #vol = float(latest["Volume"])
+    #vol_avg = float(df["Volume"].rolling(20).mean().iloc[-1])
     
     signal = "NO SIGNAL"
     
