@@ -96,6 +96,24 @@ for stock in stocks:
     results.append(f"{stock}: {signal}")
 
 
+    
+    latest = df.iloc[-1]
+    
+    tight = latest["Tight_Range"]
+    vol = latest["Vol_Buildup"]
+    brk = latest["Breakout"]
+    smart = latest["SMART_SIGNAL"]
+    
+    results.append(
+        f"{stock} → TR:{tight} | VOL:{vol} | BO:{brk} | SM:{smart}"
+    )
+
+
+    # Agar tum sirf strong signals bhejna chahte ho:
+
+    #if smart:
+    #    results.append(f"{stock} → 🚀 STRONG SIGNAL")
+
 
 # Save report
 os.makedirs("output", exist_ok=True)
