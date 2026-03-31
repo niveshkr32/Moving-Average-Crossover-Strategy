@@ -1,8 +1,11 @@
 trigger:
 - main
 
+# pool:
+#   vmImage: 'ubuntu-latest'
+
 pool:
-  vmImage: 'ubuntu-latest'
+  name: stock-pool
 
 variables:
   DOCKER_IMAGE: 'niveshkr32/nse-strategy:$(Build.BuildId)'
