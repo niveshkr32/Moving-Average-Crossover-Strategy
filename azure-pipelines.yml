@@ -45,7 +45,7 @@ steps:
 #  displayName: Install Dependencies
 
 - script: |
-    python strategy_2.py
+    python strategy_3.py
   displayName: Run NSE Strategy
 
 - task: PublishBuildArtifacts@1
