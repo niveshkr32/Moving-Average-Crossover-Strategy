@@ -8,7 +8,8 @@ pool:
   name: stock-pool
 
 variables:
-  DOCKER_IMAGE: 'niveshkr32/nse-strategy:$(Build.BuildId)'
+  # DOCKER_IMAGE: 'niveshkr32/nse-strategy:$(Build.BuildId)'
+  DOCKER_IMAGE: 'niveshkr32/nse-strategy:latest'
 
 steps:
 # 1️⃣ Checkout code
