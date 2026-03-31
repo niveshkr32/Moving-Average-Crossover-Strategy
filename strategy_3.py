@@ -49,6 +49,10 @@ unsold_stocks_df = df[df["Sell Price"].isna() | (df["Sell Price"] == '')]
 results = []
 
 for stock in unsold_stocks_df["Stock Symbol"]:
+
+    if not stock.endswith(".NS"):
+        stock = stock + ".NS"
+      
     df = yf.download(stock, period="3mo", interval="1d")
 
     df.reset_index(inplace=True)
