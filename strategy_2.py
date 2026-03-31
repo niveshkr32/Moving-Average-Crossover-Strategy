@@ -93,7 +93,7 @@ for stock in stocks:
     print(signal[["Close", "Volume"]])
 
 
-    results.append(f"{stock}: {signal}")
+    # results.append(f"{stock}: {signal}")
 
 
     
