@@ -1,8 +1,22 @@
 trigger: none
 
 schedules:
-- cron: "30 9 * * 1-5"   # 9:30 AM (market open time India)
-  displayName: NSE Daily Run
+- cron: "45 3 * * 1-5"
+  displayName: Market Open Run
+  branches:
+    include:
+    - main
+  always: true
+
+- cron: "*/15 4-9 * * 1-5"
+  displayName: Intraday Run
+  branches:
+    include:
+    - main
+  always: true
+
+- cron: "0 10 * * 1-5"
+  displayName: Market Close Run
   branches:
     include:
     - main
