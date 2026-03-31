@@ -36,9 +36,9 @@ steps:
     pip install yfinance pandas ta requests
   displayName: Install Dependencies
 
-- script: |
-    pip install ta
-  displayName: Install TA Library
+#- script: |
+#    pip install ta
+#  displayName: Install TA Library
 
 #- script: |
 #    pip install -r requirements.txt
