@@ -28,6 +28,8 @@ results = []
 for stock in stocks:
     df = yf.download(stock, period="3mo", interval="1d")
 
+    df.columns = df.columns.get_level_values(0)    
+    
     # EMA
     # df["EMA20"] = df["Close"].ewm(span=20).mean()
     # df["EMA50"] = df["Close"].ewm(span=50).mean()
@@ -88,7 +90,7 @@ for stock in stocks:
     # Show signals
     signal = df[df["SMART_SIGNAL"] == True]
     
-    print(signals[["Close", "Volume"]])
+    print(signal[["Close", "Volume"]])
 
 
     results.append(f"{stock}: {signal}")
