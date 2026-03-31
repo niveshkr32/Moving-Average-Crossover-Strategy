@@ -48,8 +48,9 @@ unsold_stocks_df = df[df["Sell Price"].isna() | (df["Sell Price"] == '')]
 
 results = []
 
-for stock in unsold_stocks_df["Stock Symbol"]:
-
+for stock in unsold_stocks_df["Stock Symbol"]:  
+    
+    stock = str(stock)  # ✅ convert to string
     if not stock.endswith(".NS"):
         stock = stock + ".NS"
       
