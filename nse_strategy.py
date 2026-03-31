@@ -33,22 +33,29 @@ for stock in stocks:
     
     latest = df.iloc[-1]    # Latest row
 
-
 ema20 = float(latest["EMA20"])
 ema50 = float(latest["EMA50"])
 rsi = float(latest["RSI"])
-vol = latest["Volume"]
-vol_avg = latest["VOL_AVG"]
+
+vol = float(latest["Volume"])
+vol_avg = float(df["Volume"].rolling(20).mean().iloc[-1])
+
+#ema20 = float(latest["EMA20"])
+#ema50 = float(latest["EMA50"])
+#rsi = float(latest["RSI"])
+#vol = latest["Volume"]
+#vol_avg = latest["VOL_AVG"]
 
 signal = "NO SIGNAL"
 
-# BUY condition
 if ema20 > ema50 and rsi > 55 and vol > vol_avg:
-    signal = "BUY 🚀"
+    print("BUY SIGNAL")
 
-# SELL condition
 elif ema20 < ema50 and rsi < 45 and vol > vol_avg:
-    signal = "SELL 🔻"
+    print("SELL SIGNAL")
+
+else:
+    print("NO TRADE")
     
 
 #    if latest["EMA20"].item() > latest["EMA50"].item():
