@@ -56,7 +56,7 @@ for stock in unsold_stocks_df["Stock Symbol"]:
     df = yf.download(stock, period="3mo", interval="1d")
 
     if df.empty:
-        results.append(f"{stock} -> ❌ No Data")
+        results.append(f"{stock} ->  No Data")
         continue
       
     df.reset_index(inplace=True)
