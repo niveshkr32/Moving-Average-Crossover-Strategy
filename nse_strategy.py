@@ -36,11 +36,11 @@ for stock in stocks:
     ema20 = float(latest["EMA20"])
     ema50 = float(latest["EMA50"])
     rsi = float(latest["RSI"])
-    vol = latest["Volume"]
-    vol_avg = latest["VOL_AVG"]
-
-    #vol = float(latest["Volume"])
-    #vol_avg = float(df["Volume"].rolling(20).mean().iloc[-1])
+    #vol = latest["Volume"]
+    #vol_avg = latest["VOL_AVG"]
+    
+    vol = float(df["Volume"].iloc[-1])   # 👈 important fix
+    vol_avg = float(df["Volume"].rolling(20).mean().iloc[-1])
     
     signal = "NO SIGNAL"
     
