@@ -25,7 +25,7 @@ steps:
 - task: Docker@2
   inputs:
     command: build
-    Dockerfile: Dockerfile.dockerfile
+    Dockerfile: Dockerfile
     tags: $(DOCKER_IMAGE)
 
 # 4️⃣ Push Docker image
