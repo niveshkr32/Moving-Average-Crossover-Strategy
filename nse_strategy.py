@@ -33,41 +33,39 @@ for stock in stocks:
     
     latest = df.iloc[-1]    # Latest row
 
-ema20 = float(latest["EMA20"])
-ema50 = float(latest["EMA50"])
-rsi = float(latest["RSI"])
-
-vol = float(latest["Volume"])
-vol_avg = float(df["Volume"].rolling(20).mean().iloc[-1])
-
-#ema20 = float(latest["EMA20"])
-#ema50 = float(latest["EMA50"])
-#rsi = float(latest["RSI"])
-#vol = latest["Volume"]
-#vol_avg = latest["VOL_AVG"]
-
-#signal = "NO SIGNAL"
-
-if ema20 > ema50 and rsi > 55 and vol > vol_avg:
-    print("BUY SIGNAL")
-
-elif ema20 < ema50 and rsi < 45 and vol > vol_avg:
-    print("SELL SIGNAL")
-
-else:
-    print("NO TRADE")
+    ema20 = float(latest["EMA20"])
+    ema50 = float(latest["EMA50"])
+    rsi = float(latest["RSI"])
     
-
-#    if latest["EMA20"].item() > latest["EMA50"].item():
-#        signal = "BUY"
-#    else:
-#        signal = "SELL"
-
+    vol = float(latest["Volume"])
+    vol_avg = float(df["Volume"].rolling(20).mean().iloc[-1])
+    
+    #ema20 = float(latest["EMA20"])
+    #ema50 = float(latest["EMA50"])
+    #rsi = float(latest["RSI"])
+    #vol = latest["Volume"]
+    #vol_avg = latest["VOL_AVG"]
+    
+    signal = "NO SIGNAL"
+    
+    if ema20 > ema50 and rsi > 55 and vol > vol_avg:
+        signal = "BUY 🚀"
+    
+    elif ema20 < ema50 and rsi < 45 and vol > vol_avg:
+        signal = "SELL 🔻"
+    
+    else:
+        signal = "NO SIGNAL"
+        
     results.append(f"{stock}: {signal}")
+
+
 
 # Save report
 os.makedirs("output", exist_ok=True)
 pd.DataFrame(results).to_csv("output/report.csv", index=False)
+
+
 
 # Telegram Alert
 ## TOKEN = os.getenv("8652752416:AAHRHdMM5FCaSfKXKtFCnmmcIwLzYwpalpc")
