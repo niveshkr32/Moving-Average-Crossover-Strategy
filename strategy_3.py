@@ -50,6 +50,8 @@ results = []
 for stock in unsold_stocks_df:
     df = yf.download(stock, period="3mo", interval="1d")
 
+    df.reset_index(inplace=True)
+  
     df.columns = df.columns.get_level_values(0)    
     
     # EMA
