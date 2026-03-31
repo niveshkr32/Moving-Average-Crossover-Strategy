@@ -56,6 +56,11 @@ for stock in unsold_stocks_df["Stock Symbol"]:
       
     df = yf.download(stock, period="3mo", interval="1d")
 
+    if df.empty:
+        print(f"{stock} -> No data found")
+        results.append(f"{stock} -> ❌ No Data")
+        continue  # next stock pe move karo
+  
     df.reset_index(inplace=True)
   
     df.columns = df.columns.get_level_values(0)    
