@@ -29,9 +29,9 @@ df.columns = ["Stock Name", "Stock Symbol", "Buy Date", "Buy Qty", "Buy Price", 
 
 # Clean and convert datatypes
 # df["Buy Date"] = pd.to_datetime(df["Buy Date"])
-df["Buy Date"] = pd.to_datetime(df["Buy Date"], errors="coerce")
-df["Buy Qty"] = pd.to_numeric(df["Buy Qty"])
-df["Buy Price"]  = pd.to_numeric(df["Buy Price"].astype(str).str.replace(',', ''))
+## df["Buy Date"] = pd.to_datetime(df["Buy Date"], errors="coerce")
+## df["Buy Qty"] = pd.to_numeric(df["Buy Qty"])
+## df["Buy Price"]  = pd.to_numeric(df["Buy Price"].astype(str).str.replace(',', ''))
 # df["Sell Date"] = pd.to_datetime(df["Sell Date"]).fillna('')
 # df["Sell Date"] = df["Sell Date"].dt.strftime('%Y-%m-%d').fillna('')
 # df["Sell Date"] = pd.to_datetime(df["Sell Date"], errors="coerce")
@@ -48,19 +48,17 @@ unsold_stocks_df = df[df["Sell Price"].isna() | (df["Sell Price"] == '')]
 
 results = []
 
-for stock in unsold_stocks_df["Stock Symbol"]:  
-    
-    stock = str(stock)  # ✅ convert to string
+for stock in unsold_stocks_df["Stock Symbol"]:
+    stock = str(stock).strip()
     if not stock.endswith(".NS"):
-        stock = stock + ".NS"
-      
+        stock += ".NS"
+
     df = yf.download(stock, period="3mo", interval="1d")
 
     if df.empty:
-        print(f"{stock} -> No data found")
         results.append(f"{stock} -> ❌ No Data")
-        continue  # next stock pe move karo
-  
+        continue
+      
     df.reset_index(inplace=True)
   
     df.columns = df.columns.get_level_values(0)    
