@@ -27,9 +27,9 @@ df = pd.read_csv(sheet_url,header=None)
 df = df.iloc[3:, [0, 1, 2, 3, 4, 17, 18, 19]]  # 19 because T is the 20th column (0-indexed)
 df.columns = ["Stock Name", "Stock Symbol", "Buy Date", "Buy Qty", "Buy Price", "Sell Date", "Sell Qty", "Sell Price"]
 
-
 # Clean and convert datatypes
-df["Buy Date"] = pd.to_datetime(df["Buy Date"])
+#df["Buy Date"] = pd.to_datetime(df["Buy Date"])
+df["Buy Date"] = pd.to_datetime(df["Buy Date"], errors="coerce")
 df["Buy Qty"] = pd.to_numeric(df["Buy Qty"])
 df["Buy Price"]  = pd.to_numeric(df["Buy Price"].astype(str).str.replace(',', ''))
 df["Sell Date"] = pd.to_datetime(df["Sell Date"]).fillna('')
