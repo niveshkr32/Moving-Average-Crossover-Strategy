@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: stock-cronjob
+spec:
+  schedule: "*/5 * * * *"   # har 5 minute run hoga
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: stock-container
+            image: niveshkr32/nse-strategy:latest
+            imagePullPolicy: Always
+            command: ["python", "strategy_3.py"]
+          restartPolicy: OnFailure
