@@ -8,7 +8,7 @@ pool:
   name: stock-pool
 
 variables:
-  DOCKER_IMAGE: 'niveshkr32/nse-strategy:$(Build.BuildId)'
+  DOCKER_IMAGE: 'nse-strategy:$(Build.BuildId)'
   # DOCKER_IMAGE: 'niveshkr32/nse-strategy:latest'
 
 steps:
@@ -45,7 +45,7 @@ steps:
 - task: Docker@2
   inputs:
     command: build
-    repository: 'nse-strategy'
+    repository: 'niveshkr32/nse-strategy'
     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
     buildContext: '$(Build.SourcesDirectory)'
     tags: |
@@ -56,7 +56,7 @@ steps:
 - task: Docker@2
   inputs:
     command: push
-    repository: 'nse-strategy'
+    repository: 'niveshkr32/nse-strategy'
     tags: |
       $(Build.BuildId)
 #      latest
