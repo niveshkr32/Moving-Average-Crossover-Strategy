@@ -45,7 +45,7 @@ steps:
 - task: Docker@2
   inputs:
     command: build
-    repository: 'niveshkr32/nse-strategy'
+    repository: 'nse-strategy'
     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
     buildContext: '$(Build.SourcesDirectory)'
     tags: |
@@ -56,7 +56,7 @@ steps:
 - task: Docker@2
   inputs:
     command: push
-    repository: 'niveshkr32/nse-strategy'
+    repository: 'nse-strategy'
     tags: |
       $(Build.BuildId)
 #      latest
