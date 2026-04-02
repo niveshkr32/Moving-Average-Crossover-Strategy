@@ -22,11 +22,18 @@ steps:
     containerRegistry: 'docker-hub-connection'
 
 # 3️⃣ Build Docker image
+#- task: Docker@2
+#  inputs:
+#    command: build
+#    Dockerfile: Dockerfile
+#    tags: $(DOCKER_IMAGE)
+
 - task: Docker@2
   inputs:
     command: build
-    Dockerfile: Dockerfile
-    tags: $(DOCKER_IMAGE)
+    Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+    buildContext: '$(Build.SourcesDirectory)'
+    tags: $(DOCKER_IMAGE)    
 
 # 4️⃣ Push Docker image
 - task: Docker@2
