@@ -62,10 +62,10 @@ steps:
 #      latest
 
 # 5️⃣ (Optional) Kubernetes deploy
-#- task: Kubernetes@1
-#  inputs:
-#    connectionType: 'Kubernetes Service Connection'
-#    kubernetesServiceEndpoint: '<your-k8s-connection>'
-#    command: apply
-#    useConfigurationFile: true
-#    configuration: 'k8s-cronjob.yaml'
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'k8s-connection-prod'
+    command: apply
+    useConfigurationFile: true
+    configuration: 'k8s-cronjob.yaml'
