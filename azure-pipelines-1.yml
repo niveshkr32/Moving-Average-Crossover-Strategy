@@ -28,18 +28,38 @@ steps:
 #    Dockerfile: Dockerfile
 #    tags: $(DOCKER_IMAGE)
 
+#- task: Docker@2
+#  inputs:
+#    command: build
+#    Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+#    buildContext: '$(Build.SourcesDirectory)'
+#    tags: $(DOCKER_IMAGE)    
+#
+## 4️⃣ Push Docker image
+#- task: Docker@2
+#  inputs:
+#    command: push
+#    tags: $(DOCKER_IMAGE)
+
+# Build Docker image
 - task: Docker@2
   inputs:
     command: build
+    repository: 'niveshkr32/nse-strategy'
     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
     buildContext: '$(Build.SourcesDirectory)'
-    tags: $(DOCKER_IMAGE)    
+    tags: |
+      $(Build.BuildId)
+      latest
 
-# 4️⃣ Push Docker image
+# Push Docker image
 - task: Docker@2
   inputs:
     command: push
-    tags: $(DOCKER_IMAGE)
+    repository: 'niveshkr32/nse-strategy'
+    tags: |
+      $(Build.BuildId)
+      latest
 
 # 5️⃣ (Optional) Kubernetes deploy
 #- task: Kubernetes@1
