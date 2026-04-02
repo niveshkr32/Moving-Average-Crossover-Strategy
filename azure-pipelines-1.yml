@@ -59,7 +59,7 @@ steps:
     repository: 'niveshkr32/nse-strategy'
     tags: |
       $(Build.BuildId)
-      latest
+#      latest
 
 # 5️⃣ (Optional) Kubernetes deploy
 #- task: Kubernetes@1
